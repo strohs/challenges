@@ -1,0 +1,9 @@
+[package]
+name = "sorts"
+version = "0.1.0"
+authors = ["strohs <strohs1@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+rand = "0.7"
+rayon = "1.5"

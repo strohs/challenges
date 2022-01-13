@@ -1,0 +1,14 @@
+[workspace]
+members = [
+    "dailyprogrammer",
+    "hackerrank/algorithms",
+    "sorts",
+    "facebook",
+    "leetcode",
+    "google",
+    "shuffle",
+    "pathfinding",
+    "euler",
+    "misc",
+    "exercism",
+]

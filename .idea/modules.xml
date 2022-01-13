@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/java-solutions/java-solutions.iml" filepath="$PROJECT_DIR$/java-solutions/java-solutions.iml" />
+      <module fileurl="file://$PROJECT_DIR$/javascript-solutions/javascript-solutions.iml" filepath="$PROJECT_DIR$/javascript-solutions/javascript-solutions.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kotlin-solutions/kotlin-solutions.iml" filepath="$PROJECT_DIR$/kotlin-solutions/kotlin-solutions.iml" />
+      <module fileurl="file://$PROJECT_DIR$/python-solutions/python-solutions.iml" filepath="$PROJECT_DIR$/python-solutions/python-solutions.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rust-solutions/rust-solutions.iml" filepath="$PROJECT_DIR$/rust-solutions/rust-solutions.iml" />
+    </modules>
+  </component>
+</project>
