@@ -2,8 +2,11 @@
 /// Given a 32-bit signed integer, reverse digits of an integer.
 ///
 /// Assume we are dealing with an environment which could only store integers within the
-/// 32-bit signed integer range: [−231,  231 − 1]. For the purpose of this problem, assume that
+/// 32-bit signed integer range: [−2^31,  2^31 − 1]. For the purpose of this problem, assume that
 /// your function returns 0 when the reversed integer overflows.
+///
+/// ## Constraints
+/// `-2^31 <= x <= 2^31 - 1`
 
 // fn reverse_as_str(n: i32) -> i32 {
 //     let mut is_neg = false;
@@ -20,8 +23,11 @@
 //     s.parse::<i32>().unwrap_or(0)
 // }
 
-fn reverse_as_digits(n: i32) -> i32 {
+fn reverse(n: i32) -> i32 {
+    /// compute the maximum multiplier that will be used to get each digit of the
+    /// input number `n`
     fn multiplier(n: i32) -> i32 {
+        // 2_147_483_647
         if n > 999_999_999 {
             1_000_000_000
         } else if n > 99_999_999 {
@@ -49,9 +55,16 @@ fn reverse_as_digits(n: i32) -> i32 {
     let n = n.abs();
     let mut m = n;
     let mut mult = multiplier(m);
-    let mut res = 0;
+    let mut res: i32 = 0;
     while m > 0 {
-        res += mult * (m % 10);
+        // we want to safely perform the following computation:   res += mult * (m % 10)
+        // if an overflow occurs we immedialtely return 0
+        match mult
+            .checked_mul(m % 10)
+            .and_then(|r| res.checked_add(r)) {
+                Some(adder) => res = adder,
+                None => return 0,
+        }
         m /= 10;
         mult /= 10;
     }
@@ -63,26 +76,26 @@ fn reverse_as_digits(n: i32) -> i32 {
 }
 
 fn main() {
-    let res = reverse_as_digits(-987);
+    let res = reverse(-987);
     dbg!(res);
 }
 
 #[cfg(test)]
 mod tests {
-    use crate::reverse_as_str;
+    use crate::reverse;
 
     #[test]
     fn reverse_positive_i32() {
-        assert_eq!(reverse_as_str(132), 231);
+        assert_eq!(reverse(132), 231);
     }
 
     #[test]
     fn reverse_negative_i32() {
-        assert_eq!(reverse_as_str(-132), -231);
+        assert_eq!(reverse(-132), -231);
     }
 
     #[test]
-    fn reverse_trailing_zerp() {
-        assert_eq!(reverse_as_str(120), 21);
+    fn reverse1() {
+        assert_eq!(reverse(1_534_236_469), 0);
     }
 }
