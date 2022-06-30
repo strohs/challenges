@@ -6,12 +6,12 @@ pub fn is_isomorphic(s: String, t: String) -> bool {
     let mut used_values = HashSet::new();
 
     // iter over bytes because strings are guaranteed to be ASCII
-    for (s_char, t_char) in s.bytes().zip(t.bytes()) {
+    for (s_char, used_char) in s.bytes().zip(t.bytes()) {
 
-        match (char_map.get(&s_char), used_values.get(&t_char)) {
+        match (char_map.get(&s_char), used_values.get(&used_char)) {
             (None, None) => {
-                char_map.insert(s_char, t_char);
-                used_values.insert(t_char);
+                char_map.insert(s_char, used_char);
+                used_values.insert(used_char);
             },
             (None, Some(_)) => {
                 // no two characters may map to the same char
@@ -19,7 +19,7 @@ pub fn is_isomorphic(s: String, t: String) -> bool {
             },
             (Some(s_value), _) => {
                 // char_map must continue to map to the same character
-                if s_value != &t_char {
+                if s_value != &used_char {
                     return false;
                 }
             },
