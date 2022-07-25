@@ -43,7 +43,7 @@ pub fn min_path_sum(grid: Vec<Vec<i32>>) -> i32 {
         }
     }
 
-    return sums[row_len-1][col_len-1]
+    sums[row_len-1][col_len-1]
 }
 
 
