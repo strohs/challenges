@@ -5,7 +5,7 @@
 
 pub fn climb_stairs(n: i32) -> i32 {
     match n {
-        _ if n < 2 => n,
+        _ if n <= 2 => n,
         _ => {
             let mut first = 1;
             let mut second = 2;
