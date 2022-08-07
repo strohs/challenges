@@ -27,57 +27,82 @@
 //          if lsi == 0, do nothing cause at root,
 //          else replace all chars in canonical from lsi.. with '', re-find and set the lsi, repeat from bi+3
 //      if bi+1 == any_other_chars, push char, increment bi, and repeat main loop until next / is found
+// pub fn simplify_path(path: String) -> String {
+//     let mut canonical = String::new();
+//     let mut lsi: usize = 0;
+//     let mut bi = 0;
+//
+//     let valid_dot = |i: usize|
+//         matches!(path.get(i..i+2), Some("./")) ||
+//             matches!(path.get(i..i+1), Some(".") if i + 1 >= path.len());
+//
+//     let valid_dotdot = |i: usize|
+//         matches!(path.get(i..i+3), Some("../")) ||
+//             matches!(path.get(i..i+2), Some("..") if i + 2 >= path.len());
+//
+//
+//     while bi < path.len() {
+//         let cur_char = &path[bi..bi + 1];
+//         if cur_char == "/" {
+//             // check .. before .
+//             if valid_dotdot(bi+1) {
+//                 canonical.replace_range(lsi.., "");
+//                 lsi = canonical.rfind("/").unwrap_or(0);
+//                 bi += 3;
+//             } else if valid_dot(bi+1) {
+//                 bi += 2;
+//             } else if path.get(bi+1..bi+2) == Some("/") {
+//                 // do nothing, next char is a "/"
+//                 bi += 1;
+//             } else {
+//                 // push the slash
+//                 canonical.push_str(cur_char);
+//                 lsi = canonical.len() - 1;
+//                 bi += 1;
+//             }
+//         } else {
+//             // push any other chars
+//             canonical.push_str(cur_char);
+//             bi += 1;
+//         }
+//     }
+//
+//     if canonical.len() == 0 {
+//         String::from("/")
+//     } else if canonical.len() > 1 && canonical.ends_with("/") {
+//         // get rid of any trailing /
+//         canonical.replace_range(canonical.len() - 1.., "");
+//         canonical
+//     } else {
+//         canonical
+//     }
+// }
+
+
+/// alternate solution that uses a stack to push path segments and then join them at the end
 pub fn simplify_path(path: String) -> String {
-    let mut canonical = String::new();
-    let mut lsi: usize = 0;
-    let mut bi = 0;
+    let splits = path.split('/').collect::<Vec<&str>>();
+    let mut root = String::from("/");
+    let mut stack: Vec<&str> = vec![];
 
-    let valid_dot = |i: usize|
-        matches!(path.get(i..i+2), Some("./")) ||
-            matches!(path.get(i..i+1), Some(".") if i + 1 >= path.len());
-
-    let valid_dotdot = |i: usize|
-        matches!(path.get(i..i+3), Some("../")) ||
-            matches!(path.get(i..i+2), Some("..") if i + 2 >= path.len());
-
-
-    while bi < path.len() {
-        let cur_char = &path[bi..bi + 1];
-        if cur_char == "/" {
-            // check .. before .
-            if valid_dotdot(bi+1) {
-                canonical.replace_range(lsi.., "");
-                lsi = canonical.rfind("/").unwrap_or(0);
-                bi += 3;
-            } else if valid_dot(bi+1) {
-                bi += 2;
-            } else if path.get(bi+1..bi+2) == Some("/") {
-                // do nothing, next char is a "/"
-                bi += 1;
-            } else {
-                // push the slash
-                canonical.push_str(cur_char);
-                lsi = canonical.len() - 1;
-                bi += 1;
-            }
-        } else {
-            // push any other chars
-            canonical.push_str(cur_char);
-            bi += 1;
+    for segment in splits {
+        match segment {
+            "." | "" => (),
+            ".." => {
+                stack.pop();
+                ()
+            },
+            seg => stack.push(seg),
         }
     }
 
-    if canonical.len() == 0 {
-        String::from("/")
-    } else if canonical.len() > 1 && canonical.ends_with("/") {
-        // get rid of any trailing /
-        canonical.replace_range(canonical.len() - 1.., "");
-        canonical
+    if stack.is_empty() {
+        root
     } else {
-        canonical
+        root.push_str(&stack.join("/"));
+        root
     }
 }
-
 fn main() {}
 
 
@@ -87,7 +112,6 @@ mod tests {
 
     #[test]
     fn tester() {
-        let path = "abcde/.";
         assert!(true);
     }
 
