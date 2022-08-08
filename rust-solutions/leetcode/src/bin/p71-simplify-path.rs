@@ -90,9 +90,8 @@ pub fn simplify_path(path: String) -> String {
             "." | "" => (),
             ".." => {
                 stack.pop();
-                ()
             },
-            seg => stack.push(seg),
+            _ => stack.push(segment),
         }
     }
 

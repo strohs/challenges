@@ -1,5 +1,5 @@
 # Programming Challenges
-A collection of my solutions to programming challenges from various websites
+My personal archive of solutions to programming challenges from various websites.
 
 These solutions are from:
 - [dailyprogrammer](https://reddit.com/r/dailyprogrammer)
