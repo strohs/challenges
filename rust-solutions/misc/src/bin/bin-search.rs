@@ -32,9 +32,7 @@ fn bin_search<T>(sl: &[T], e: T) -> Option<usize>
     None
 }
 
-fn main() {
-
-}
+fn main() {}
 
 #[cfg(test)]
 mod tests {
