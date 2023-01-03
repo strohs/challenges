@@ -1,29 +1,30 @@
-package leetcode;/// # Letter Combinations of a phone number
-/// Given a string containing digits from `2-9` inclusive, return all possible letter combinations
-/// that the number could represent.
-/// A mapping of digit to letters (just like on the telephone buttons) is given below. Note that
-/// 1 does not map to any letters.
-/// ```
-/// 2 -> a,b
-/// 3 -> d,e,f
-/// 4 -> g,h,i
-/// 5 -> j,k,l
-/// 6 -> m,n,o
-/// 7 -> p,q,r,s
-/// 8 -> t,u,v
-/// 9 -> w,x,y,z
-/// ```
-/// ## Example
-/// input: "23"
-/// output: `["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"]`
-///
-/// FYI permutation - you care about the order of the elements
-///     n! / (n - k)!
-/// combinations - you don't care about the order of the elements
-///    combination formula, you have n objects and want to choose k    = n! / k!(n - k!)
-
+package leetcode;
 import java.util.*;
 
+/**
+ * # Letter Combinations of a phone number
+ * Given a string containing digits from `2-9` inclusive, return all possible letter combinations
+ * that the number could represent.
+ * A mapping of digit to letters (just like on the telephone buttons) is given below. Note that
+ * 1 does not map to any letters.
+ * ```
+ * 2 -> a,b
+ * 3 -> d,e,f
+ * 4 -> g,h,i
+ * 5 -> j,k,l
+ * 6 -> m,n,o
+ * 7 -> p,q,r,s
+ * 8 -> t,u,v
+ * 9 -> w,x,y,z
+ * ```
+ * ## Example
+ * input: "23"
+ * output: `["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"]`
+ * FYI permutation - you care about the order of the elements
+ *     n! / (n - k)!
+ * combinations - you don't care about the order of the elements
+ *    combination formula, you have n objects and want to choose k    = n! / k!(n - k!)
+ */
 public class PhoneLetterCombinations {
 
     private Map<Character, List<Character>> digitMap;

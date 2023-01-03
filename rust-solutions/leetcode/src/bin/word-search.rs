@@ -236,4 +236,18 @@ mod tests {
         ];
         assert!(!exist(b3.clone(), "aaaaa".to_string()));
     }
+
+    #[test]
+    fn test8() {
+        let b3 = vec![
+            vec!['a', 'a', 'b', 'a', 'a', 'b'],
+            vec!['a', 'a', 'b', 'b', 'b', 'a'],
+            vec!['a', 'a', 'a', 'a', 'b', 'a'],
+            vec!['b', 'a', 'b', 'b', 'a', 'b'],
+            vec!['a', 'b', 'b', 'a', 'b', 'a'],
+            vec!['b', 'a', 'a', 'a', 'a', 'b'],
+
+        ];
+        assert!(!exist(b3.clone(), "bbbaabbbbab".to_string()));
+    }
 }

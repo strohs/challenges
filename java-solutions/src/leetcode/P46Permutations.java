@@ -1,6 +1,7 @@
 package leetcode;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Given an array nums of distinct integers, return all the possible permutations.
@@ -26,15 +27,12 @@ public class P46Permutations {
     private void recursivePermute(int[] nums, int n, int i, List<List<Integer>> results) {
         // at the end of the current array, so store the current permutation
         if (i == n) {
-            List<Integer> perm = new ArrayList<>();
-            for (int j = 0; j < n; j++) {
-                perm.add(nums[j]);
-            }
+            List<Integer> perm = Arrays.stream(nums).boxed().collect(Collectors.toList());
             results.add(perm);
         } else {
             for (int j = i; j < n; j++) {
                 swap(nums, i, j);
-                System.out.println("i:" + i + " j:" + j + " " + Arrays.toString(nums));
+                //System.out.println("i:" + i + " j:" + j + " " + Arrays.toString(nums));
                 recursivePermute(nums, n, i+1, results);
                 // swap back
                 swap(nums, i, j);
@@ -44,7 +42,7 @@ public class P46Permutations {
 
     public static void main(String[] args) {
         P46Permutations p = new P46Permutations();
-        int[] ex1 = new int[] {1, 2, 3};
+        int[] ex1 = new int[] { 1, 2, 3 };
 
         List<List<Integer>> perms = p.permute(ex1);
         for (List<Integer> perm : perms) {
