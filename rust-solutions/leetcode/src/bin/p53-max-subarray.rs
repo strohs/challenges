@@ -13,7 +13,6 @@ use std::cmp::max;
 /// Explanation: [4,-1,2,1] has the largest sum = 6.
 /// ```
 
-
 pub fn max_sub_array(nums: Vec<i32>) -> i32 {
     let mut max_sum = i32::MIN;
     let mut cur_sum = 0;
@@ -26,9 +25,8 @@ pub fn max_sub_array(nums: Vec<i32>) -> i32 {
     max_sum
 }
 
-
 fn main() {
-    let v = vec![-2,1,-3,4,-1,2,1,-5,4];
+    let v = vec![-2, 1, -3, 4, -1, 2, 1, -5, 4];
     let mut maxsum = max_sub_array(v);
     println!("{}", maxsum);
 
@@ -36,7 +34,7 @@ fn main() {
     maxsum = max_sub_array(v1);
     println!("{}", maxsum);
 
-    let v1 = vec![-2, -1, -3 , -1];
+    let v1 = vec![-2, -1, -3, -1];
     maxsum = max_sub_array(v1);
     println!("{}", maxsum);
 

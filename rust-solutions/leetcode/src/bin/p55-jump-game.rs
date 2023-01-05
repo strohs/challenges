@@ -7,7 +7,6 @@
 /// In this implementation, start at the end of the array and repeatedly find all indices that
 /// can jump to the last position of the array
 pub fn can_jump(nums: Vec<i32>) -> bool {
-
     // returns the indices of nums that can jump to (or past) the last element of `nums`
     // If no such indices where found, an empty vector is returned
     fn can_jump_to_last(nums: &[i32]) -> Vec<usize> {
@@ -24,7 +23,9 @@ pub fn can_jump(nums: Vec<i32>) -> bool {
         idxs
     }
 
-    if nums.len() == 1 { return true; }
+    if nums.len() == 1 {
+        return true;
+    }
     // indices of nums that can 'jump' to the current last index
     let mut jump_indices = can_jump_to_last(&nums);
     while !jump_indices.is_empty() {
@@ -38,7 +39,6 @@ pub fn can_jump(nums: Vec<i32>) -> bool {
 
     false
 }
-
 
 // /// recursive implementation
 // pub fn can_jump(nums: Vec<i32>) -> bool {
@@ -72,7 +72,6 @@ pub fn can_jump(nums: Vec<i32>) -> bool {
 //     can_jump_recursive(&nums)
 // }
 
-
 fn main() {}
 
 #[cfg(test)]
@@ -81,13 +80,13 @@ mod tests {
 
     #[test]
     fn example1() {
-        let nums = vec![2,3,1,1,4];
+        let nums = vec![2, 3, 1, 1, 4];
         assert_eq!(true, can_jump(nums));
     }
 
     #[test]
     fn example2() {
-        let nums = vec![3,2,1,0,4];
+        let nums = vec![3, 2, 1, 0, 4];
         assert_eq!(false, can_jump(nums));
     }
 
@@ -105,19 +104,19 @@ mod tests {
 
     #[test]
     fn example5() {
-        let nums = vec![0,2,3];
+        let nums = vec![0, 2, 3];
         assert_eq!(false, can_jump(nums));
     }
 
     #[test]
     fn example6() {
-        let nums = vec![1,2,3];
+        let nums = vec![1, 2, 3];
         assert_eq!(true, can_jump(nums));
     }
 
     #[test]
     fn example7() {
-        let nums = vec![1,0,1,0];
+        let nums = vec![1, 0, 1, 0];
         assert_eq!(false, can_jump(nums));
     }
 }

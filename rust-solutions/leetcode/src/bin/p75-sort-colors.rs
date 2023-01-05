@@ -9,7 +9,6 @@
 struct Solution;
 
 impl Solution {
-
     pub fn sort_colors(nums: &mut Vec<i32>) {
         // index to current head of nums
         let mut h = 0;
@@ -25,8 +24,7 @@ impl Solution {
                     h += 1;
                     i += 1;
                 }
-            }
-            else if nums[i] == 2 {
+            } else if nums[i] == 2 {
                 nums.swap(t, i);
                 t -= 1;
             } else {
@@ -46,27 +44,27 @@ mod tests {
     fn example1() {
         let mut nums = vec![2, 0, 2, 1, 1, 0];
         Solution::sort_colors(&mut nums);
-        assert_eq!(nums, vec![0,0,1,1,2,2]);
+        assert_eq!(nums, vec![0, 0, 1, 1, 2, 2]);
     }
 
     #[test]
     fn example3() {
         let mut nums = vec![0, 1, 2];
         Solution::sort_colors(&mut nums);
-        assert_eq!(nums, vec![0,1,2]);
+        assert_eq!(nums, vec![0, 1, 2]);
     }
 
     #[test]
     fn example4() {
         let mut nums = vec![2, 1, 0];
         Solution::sort_colors(&mut nums);
-        assert_eq!(nums, vec![0,1,2]);
+        assert_eq!(nums, vec![0, 1, 2]);
     }
 
     #[test]
     fn example5() {
         let mut nums = vec![2, 0, 1];
         Solution::sort_colors(&mut nums);
-        assert_eq!(nums, vec![0,1,2]);
+        assert_eq!(nums, vec![0, 1, 2]);
     }
 }

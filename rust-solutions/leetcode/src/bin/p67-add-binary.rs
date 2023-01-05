@@ -1,15 +1,17 @@
-
 /// # Problem 67 - Add Binary
 /// Given two binary strings a and b, return their sum as a binary string.
 pub fn add_binary(a: String, b: String) -> String {
-
     let mut res = String::new();
     let mut carry = 0_u32;
 
     let bin_chars = if a.len() > b.len() {
-        a.chars().rev().zip(b.chars().rev().chain(std::iter::repeat('0')))
+        a.chars()
+            .rev()
+            .zip(b.chars().rev().chain(std::iter::repeat('0')))
     } else {
-        b.chars().rev().zip(a.chars().rev().chain(std::iter::repeat('0')))
+        b.chars()
+            .rev()
+            .zip(a.chars().rev().chain(std::iter::repeat('0')))
     };
 
     for (c1, c2) in bin_chars {
@@ -22,11 +24,12 @@ pub fn add_binary(a: String, b: String) -> String {
         }
         res.push(char::from_digit(sum, 2).unwrap());
     }
-    if carry == 1 { res.push('1'); }
+    if carry == 1 {
+        res.push('1');
+    }
 
     res.chars().rev().collect()
 }
-
 
 fn main() {
     let a = "11".to_string();

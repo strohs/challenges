@@ -1,4 +1,3 @@
-
 /// Given an `m x n matrix`, return all elements of the matrix in spiral order.
 /// # Example
 /// Given the matrix
@@ -11,15 +10,13 @@
 /// `1,2,3,6,9,8,7,4,5`
 ///
 pub fn spiral_order(matrix: Vec<Vec<i32>>) -> Vec<i32> {
-
     let row_len = matrix.len();
     let col_len = matrix[0].len();
 
     let mut spiral = vec![];
     let (mut rb, mut re, mut cb, mut ce) = (0_usize, row_len, 0_usize, col_len);
 
-    for &i in [1,2,3,4].iter().cycle() {
-
+    for &i in [1, 2, 3, 4].iter().cycle() {
         // iterate columns
         if i % 4 == 1 {
             for c in cb..ce {
@@ -50,13 +47,11 @@ pub fn spiral_order(matrix: Vec<Vec<i32>>) -> Vec<i32> {
         }
 
         if rb >= re || cb >= ce {
-            break
+            break;
         }
-
     }
     spiral
 }
-
 
 fn main() {}
 
@@ -66,16 +61,16 @@ mod tests {
 
     #[test]
     fn example1() {
-        let matrix = vec![vec![1,2,3], vec![4,5,6], vec![7,8,9]];
+        let matrix = vec![vec![1, 2, 3], vec![4, 5, 6], vec![7, 8, 9]];
         let spiral = spiral_order(matrix);
-        assert_eq!(spiral, vec![1,2,3,6,9,8,7,4,5]);
+        assert_eq!(spiral, vec![1, 2, 3, 6, 9, 8, 7, 4, 5]);
     }
 
     #[test]
     fn example2() {
-        let matrix = vec![vec![1,2,3]];
+        let matrix = vec![vec![1, 2, 3]];
         let spiral = spiral_order(matrix);
-        assert_eq!(spiral, vec![1,2,3]);
+        assert_eq!(spiral, vec![1, 2, 3]);
     }
 
     #[test]
@@ -87,11 +82,8 @@ mod tests {
 
     #[test]
     fn example4() {
-        let matrix = vec![
-            vec![1, 2, 3, 4],
-            vec![5, 6, 7, 8],
-            vec![9,10,11,12]];
+        let matrix = vec![vec![1, 2, 3, 4], vec![5, 6, 7, 8], vec![9, 10, 11, 12]];
         let spiral = spiral_order(matrix);
-        assert_eq!(spiral, vec![1,2,3,4,8,12,11,10,9,5,6,7]);
+        assert_eq!(spiral, vec![1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7]);
     }
 }

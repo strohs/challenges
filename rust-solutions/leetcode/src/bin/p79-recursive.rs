@@ -1,3 +1,5 @@
+use std::iter::from_fn;
+
 /// # LeetCode 79 - Word Search - Recursive Solution
 /// given a 2D board of letters and a word, determine if the word exists on the board.
 /// words can occur horizontally and vertically, but not diagonally.
@@ -20,84 +22,101 @@
 struct Matrix<T>(Vec<Vec<T>>);
 
 impl<T> Matrix<T> {
-    /// returns an iterator over `(row,col)` tuple, of the cells that are adjacent to the given row,col index
-    fn adjacent_iter(&self, row: usize, col: usize) -> AdjacentIter<T> {
-        AdjacentIter::new(&self, row, col)
-    }
-}
+    // fn adjacent_iter(&self, row: usize, col: usize) -> AdjacentIter<T> {
+    //     AdjacentIter::new(&self, row, col)
+    // }
 
-/// helper struct for iterating over the cells to the North, South, East, and West of the given row,col within a Matrix
-struct AdjacentIter<'a, T> {
-    matrix: &'a Matrix<T>,
-    row: usize,
-    col: usize,
-    // the current adjacent position we are about to iterate over next, 0 = North, 1 = East, 2 = South, 3 = West, 4 or more means we are done iterating
-    pos: u8,
-}
-
-impl<'a, T> AdjacentIter<'a, T> {
-    fn new(matrix: &'a Matrix<T>, row: usize, col: usize) -> Self {
-        Self {
-            matrix,
-            row,
-            col,
-            pos: 0,
+    /// returns an iterator over `(row,col)` indices that are adjacent to the given `row,col` index
+    fn adjacents(&self, row: usize, col: usize) -> impl Iterator<Item = (usize, usize)> {
+        let mut adjs = Vec::with_capacity(4);
+        if let Some(adj) = self.get_west(row, col) {
+            adjs.push(adj);
         }
+        if let Some(adj) = self.get_south(row, col) {
+            adjs.push(adj);
+        }
+        if let Some(adj) = self.get_east(row, col) {
+            adjs.push(adj);
+        }
+        if let Some(adj) = self.get_north(row, col) {
+            adjs.push(adj);
+        }
+        from_fn(move || adjs.pop())
     }
 
-    fn get_north(&self) -> Option<(usize, usize)> {
-        if self.row > 0 && self.matrix.0.get(self.row - 1).and_then(|row| row.get(self.col)).is_some() {
-            Some((self.row - 1, self.col))
+    fn get_north(&self, row: usize, col: usize) -> Option<(usize, usize)> {
+        if row > 0 && self.0.get(row - 1).and_then(|row| row.get(col)).is_some() {
+            Some((row - 1, col))
         } else {
             None
         }
     }
 
-    fn get_east(&self) -> Option<(usize, usize)> {
-        if self.matrix.0.get(self.row).and_then(|row| row.get(self.col+1)).is_some() {
-            Some((self.row, self.col + 1))
+    fn get_east(&self, row: usize, col: usize) -> Option<(usize, usize)> {
+        if self.0.get(row).and_then(|row| row.get(col + 1)).is_some() {
+            Some((row, col + 1))
         } else {
             None
         }
     }
 
-    fn get_south(&self) -> Option<(usize, usize)> {
-        if self.matrix.0.get(self.row + 1).and_then(|row| row.get(self.col)).is_some() {
-            Some((self.row + 1, self.col))
+    fn get_south(&self, row: usize, col: usize) -> Option<(usize, usize)> {
+        if self.0.get(row + 1).and_then(|row| row.get(col)).is_some() {
+            Some((row + 1, col))
         } else {
             None
         }
     }
 
-    fn get_west(&self) -> Option<(usize, usize)> {
-        if self.col > 0 && self.matrix.0.get(self.row).and_then(|row| row.get(self.col - 1)).is_some() {
-            Some((self.row, self.col - 1))
+    fn get_west(&self, row: usize, col: usize) -> Option<(usize, usize)> {
+        if col > 0 && self.0.get(row).and_then(|row| row.get(col - 1)).is_some() {
+            Some((row, col - 1))
         } else {
             None
         }
     }
 }
 
-impl<'a, T> Iterator for AdjacentIter<'a, T> {
-    type Item = (usize, usize);
-
-    fn next(&mut self) -> Option<Self::Item> {
-        let mut next = None;
-        while self.pos < 4 && next.is_none() {
-            match self.pos {
-                0 => next = self.get_north(),
-                1 => next = self.get_east(),
-                2 => next = self.get_south(),
-                3 => next = self.get_west(),
-                _ => next = None,
-            }
-            self.pos += 1;
-        }
-        next
-    }
-}
-
-
+// /// helper struct for iterating over the cells to the North, South, East, and West of the given row,col within a Matrix
+// struct AdjacentIter<'a, T> {
+//     matrix: &'a Matrix<T>,
+//     row: usize,
+//     col: usize,
+//     // the current adjacent position we are about to iterate over next, 0 = North, 1 = East, 2 = South, 3 = West, 4 or more means we are done iterating
+//     pos: u8,
+// }
+//
+// impl<'a, T> AdjacentIter<'a, T> {
+//     fn new(matrix: &'a Matrix<T>, row: usize, col: usize) -> Self {
+//         Self {
+//             matrix,
+//             row,
+//             col,
+//             pos: 0,
+//         }
+//     }
+//
+//
+// }
+//
+// impl<'a, T> Iterator for AdjacentIter<'a, T> {
+//     type Item = (usize, usize);
+//
+//     fn next(&mut self) -> Option<Self::Item> {
+//         let mut next = None;
+//         while self.pos < 4 && next.is_none() {
+//             match self.pos {
+//                 0 => next = self.get_north(),
+//                 1 => next = self.get_east(),
+//                 2 => next = self.get_south(),
+//                 3 => next = self.get_west(),
+//                 _ => next = None,
+//             }
+//             self.pos += 1;
+//         }
+//         next
+//     }
+// }
 
 fn exist(mut board: Matrix<char>, word: String) -> bool {
     for i in 0..board.0.len() {
@@ -122,12 +141,12 @@ fn exist_recursive(board: &mut Matrix<char>, word: &str, idx: usize, i: usize, j
     let c = board.0[i][j];
     board.0[i][j] = '#';
 
-
-    for (x, y) in board.adjacent_iter(i, j).collect::<Vec<(usize, usize)>>() {
-        if idx + 1 < word.len() && board.0[x][y] == word.chars().nth(idx + 1).unwrap() {
-            if exist_recursive(board, word, idx + 1, x, y) {
-                return true;
-            }
+    for (x, y) in board.adjacents(i, j) {
+        if idx + 1 < word.len()
+            && board.0[x][y] == word.chars().nth(idx + 1).unwrap()
+            && exist_recursive(board, word, idx + 1, x, y)
+        {
+            return true;
         }
     }
     board.0[i][j] = c;
@@ -135,29 +154,12 @@ fn exist_recursive(board: &mut Matrix<char>, word: &str, idx: usize, i: usize, j
     false
 }
 
-
 fn main() {}
 
 #[cfg(test)]
 mod tests {
-    use crate::exist;
-    use super::AdjacentIter;
     use super::Matrix;
-
-    #[test]
-    fn test_adjacents_iter() {
-        let b1 = Matrix(vec![
-            vec!['A', 'B', 'C', 'E'],
-            vec!['S', 'F', 'C', 'S'],
-            vec!['A', 'D', 'E', 'E'],
-        ]);
-        let mut adjs = AdjacentIter::new(&b1, 1, 1);
-        assert_eq!(adjs.next(), Some((0, 1)));
-        assert_eq!(adjs.next(), Some((1, 2)));
-        assert_eq!(adjs.next(), Some((2, 1)));
-        assert_eq!(adjs.next(), Some((1, 0)));
-        assert_eq!(adjs.next(), None);
-    }
+    use crate::exist;
 
     #[test]
     fn test_adjacents_se_corner() {
@@ -166,7 +168,7 @@ mod tests {
             vec!['S', 'F', 'C', 'S'],
             vec!['A', 'D', 'E', 'E'],
         ]);
-        let mut adj = mat.adjacent_iter(2, 3);
+        let mut adj = mat.adjacents(2, 3);
         assert_eq!(adj.next(), Some((1, 3)));
         assert_eq!(adj.next(), Some((2, 2)));
         assert_eq!(adj.next(), None);
@@ -179,7 +181,7 @@ mod tests {
             vec!['S', 'F', 'C', 'S'],
             vec!['A', 'D', 'E', 'E'],
         ]);
-        let mut adj = mat.adjacent_iter(0, 0);
+        let mut adj = mat.adjacents(0, 0);
         assert_eq!(adj.next(), Some((0, 1)));
         assert_eq!(adj.next(), Some((1, 0)));
         assert_eq!(adj.next(), None);
@@ -192,7 +194,7 @@ mod tests {
             vec!['S', 'F', 'C', 'S'],
             vec!['A', 'D', 'E', 'E'],
         ]);
-        let mut adj = mat.adjacent_iter(0, 2);
+        let mut adj = mat.adjacents(0, 2);
         assert_eq!(adj.next(), Some((0, 3)));
         assert_eq!(adj.next(), Some((1, 2)));
         assert_eq!(adj.next(), Some((0, 1)));
@@ -261,10 +263,7 @@ mod tests {
 
     #[test]
     fn test7() {
-        let m3 = Matrix(vec![
-            vec!['a', 'a'],
-            vec!['a', 'a']
-        ]);
+        let m3 = Matrix(vec![vec!['a', 'a'], vec!['a', 'a']]);
         assert!(!exist(m3, "aaaaa".to_string()));
     }
 

@@ -16,7 +16,6 @@
 ///
 /// Return the simplified canonical path.
 
-
 // rather than doing multiple find and replace, we'll build a separate canonical string
 // so we only have to iterate once.
 // walk through path, char by char, keeping track of last index of slash in canonical (lsi)
@@ -78,7 +77,6 @@
 //     }
 // }
 
-
 /// alternate solution that uses a stack to push path segments and then join them at the end
 pub fn simplify_path(path: String) -> String {
     let splits = path.split('/').collect::<Vec<&str>>();
@@ -90,7 +88,7 @@ pub fn simplify_path(path: String) -> String {
             "." | "" => (),
             ".." => {
                 stack.pop();
-            },
+            }
             _ => stack.push(segment),
         }
     }
@@ -103,7 +101,6 @@ pub fn simplify_path(path: String) -> String {
     }
 }
 fn main() {}
-
 
 #[cfg(test)]
 mod tests {
@@ -126,12 +123,18 @@ mod tests {
 
     #[test]
     fn example3() {
-        assert_eq!(simplify_path(String::from("/home//foo/")), String::from("/home/foo"));
+        assert_eq!(
+            simplify_path(String::from("/home//foo/")),
+            String::from("/home/foo")
+        );
     }
 
     #[test]
     fn example4() {
-        assert_eq!(simplify_path(String::from("/home/./foo")), String::from("/home/foo"));
+        assert_eq!(
+            simplify_path(String::from("/home/./foo")),
+            String::from("/home/foo")
+        );
     }
 
     #[test]
@@ -161,16 +164,25 @@ mod tests {
 
     #[test]
     fn example9() {
-        assert_eq!(simplify_path(String::from("/abc/...fab/../foo")), String::from("/abc/foo"));
+        assert_eq!(
+            simplify_path(String::from("/abc/...fab/../foo")),
+            String::from("/abc/foo")
+        );
     }
 
     #[test]
     fn example10() {
-        assert_eq!(simplify_path(String::from("/abc/fab/..")), String::from("/abc"));
+        assert_eq!(
+            simplify_path(String::from("/abc/fab/..")),
+            String::from("/abc")
+        );
     }
 
     #[test]
     fn example11() {
-        assert_eq!(simplify_path(String::from("/a/./b/../../c/")), String::from("/c"));
+        assert_eq!(
+            simplify_path(String::from("/a/./b/../../c/")),
+            String::from("/c")
+        );
     }
 }

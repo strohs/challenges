@@ -19,10 +19,7 @@ pub fn plus_one(digits: Vec<i32>) -> Vec<i32> {
     digits
 }
 
-
-fn main() {
-
-}
+fn main() {}
 
 #[cfg(test)]
 mod tests {
@@ -30,22 +27,22 @@ mod tests {
 
     #[test]
     fn example1() {
-        let mut digits = vec![1,2,3];
+        let mut digits = vec![1, 2, 3];
         digits = plus_one(digits);
-        assert_eq!(digits, vec![1,2,4]);
+        assert_eq!(digits, vec![1, 2, 4]);
     }
 
     #[test]
     fn example2() {
-        let mut digits = vec![9,9,9];
+        let mut digits = vec![9, 9, 9];
         digits = plus_one(digits);
-        assert_eq!(digits, vec![1,0,0,0]);
+        assert_eq!(digits, vec![1, 0, 0, 0]);
     }
 
     #[test]
     fn example3() {
         let mut digits = vec![9];
         digits = plus_one(digits);
-        assert_eq!(digits, vec![1,0]);
+        assert_eq!(digits, vec![1, 0]);
     }
 }

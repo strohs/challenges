@@ -4,7 +4,6 @@
 ///
 /// A word is a maximal substring consisting of non-space characters only.
 pub fn length_of_last_word(s: String) -> i32 {
-
     // find the index of the last alphabetic character in the string
     let end_index = *&s[..]
         .bytes()

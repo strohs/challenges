@@ -43,7 +43,7 @@ impl Fib {
                     let next = *p1 + *p2;
                     self.memo.insert(index, next);
                     next
-                },
+                }
                 _ => {
                     // compute fibo
                     let mut prev: u64 = 1;

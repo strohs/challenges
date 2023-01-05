@@ -54,14 +54,8 @@ fn find_first_last_index(nums: &[i32], target: i32) -> Vec<i32> {
 }
 
 fn main() {
-    println!(
-        "[3, 4] target 3 = {:?}",
-        find_first_last_index(&[3, 4], 3)
-    );
-    println!(
-        "[3, 4] target 6 = {:?}",
-        find_first_last_index(&[3, 4], 6)
-    );
+    println!("[3, 4] target 3 = {:?}", find_first_last_index(&[3, 4], 3));
+    println!("[3, 4] target 6 = {:?}", find_first_last_index(&[3, 4], 6));
     println!(
         "[5,7,7,8,8,10] target 8 = {:?}",
         find_first_last_index(&[5, 7, 7, 8, 8, 10], 8)

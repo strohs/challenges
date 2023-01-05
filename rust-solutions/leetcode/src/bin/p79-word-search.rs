@@ -16,33 +16,31 @@
 /// Given word = "ABCB", return false.
 /// ```
 
-
 /// This is an iterative solution rather than recursive
 fn exist(board: Vec<Vec<char>>, word: String) -> bool {
-
     /// get (up to) four 'cells' adjacent to the cell at index: r,c
     /// # returns
     /// a 3-tuple containing the adjacent cells' row/col indices and the character at that index
     fn adj(board: &Vec<Vec<char>>, r: usize, c: usize) -> Vec<(usize, usize, char)> {
-        let mut adjs:Vec<(usize, usize, char)> = Vec::with_capacity(4);
+        let mut adjs: Vec<(usize, usize, char)> = Vec::with_capacity(4);
 
         // get north and south cell
         if r > 0 {
-            if let Some(row) = board.get(r-1) {
+            if let Some(row) = board.get(r - 1) {
                 if let Some(ch) = row.get(c) {
-                    adjs.push((r-1, c, *ch));
+                    adjs.push((r - 1, c, *ch));
                 }
             }
-            if let Some(row) = board.get(r+1) {
+            if let Some(row) = board.get(r + 1) {
                 if let Some(ch) = row.get(c) {
-                    adjs.push((r+1, c, *ch));
+                    adjs.push((r + 1, c, *ch));
                 }
             }
         } else {
             // only get south
-            if let Some(row) = board.get(r+1) {
+            if let Some(row) = board.get(r + 1) {
                 if let Some(ch) = row.get(c) {
-                    adjs.push((r+1, c, *ch));
+                    adjs.push((r + 1, c, *ch));
                 }
             }
         }
@@ -51,21 +49,21 @@ fn exist(board: Vec<Vec<char>>, word: String) -> bool {
         if c > 0 {
             // get west
             if let Some(row) = board.get(r) {
-                if let Some(ch) = row.get(c-1) {
-                    adjs.push((r, c-1, *ch))
+                if let Some(ch) = row.get(c - 1) {
+                    adjs.push((r, c - 1, *ch))
                 }
             }
             // get east
             if let Some(row) = board.get(r) {
-                if let Some(ch) = row.get(c+1) {
-                    adjs.push((r, c+1, *ch))
+                if let Some(ch) = row.get(c + 1) {
+                    adjs.push((r, c + 1, *ch))
                 }
             }
         } else {
             // only get east
             if let Some(row) = board.get(r) {
-                if let Some(ch) = row.get(c+1) {
-                    adjs.push((r, c+1, *ch))
+                if let Some(ch) = row.get(c + 1) {
+                    adjs.push((r, c + 1, *ch))
                 }
             }
         }
@@ -87,9 +85,7 @@ fn exist(board: Vec<Vec<char>>, word: String) -> bool {
 
     /// builds a Vec of chars from the characters that have been visited on the board
     fn charify(visited: &[(usize, usize)], board: &Vec<Vec<char>>) -> Vec<char> {
-        visited.iter()
-            .map(|&(r, c )| board[r][c])
-            .collect()
+        visited.iter().map(|&(r, c)| board[r][c]).collect()
     }
 
     /// depth first search
@@ -111,21 +107,19 @@ fn exist(board: Vec<Vec<char>>, word: String) -> bool {
             let curr_idx = to_visit.pop().unwrap();
             let (cr, cc) = curr_idx;
 
-
             if !visited.contains(&curr_idx) {
-
                 // add current index to list of visited
                 visited.push(curr_idx);
 
                 if &charify(&visited, board) == word {
-                    return true
+                    return true;
                 }
 
                 // fetch adjacent adjacent indices that match the next character of word, that have not been visited
-                if word.get(i+1).is_some() {
+                if word.get(i + 1).is_some() {
                     let mut adjs = adj(board, cr, cc)
                         .iter()
-                        .filter(|(r, c, ch)| *ch == word[i+1] && !visited.contains(&(*r, *c)))
+                        .filter(|(r, c, ch)| *ch == word[i + 1] && !visited.contains(&(*r, *c)))
                         .map(|&(r, c, _ch)| (r, c))
                         .collect::<Vec<(usize, usize)>>();
 
@@ -162,7 +156,6 @@ fn exist(board: Vec<Vec<char>>, word: String) -> bool {
 }
 
 fn main() {}
-
 
 #[cfg(test)]
 mod tests {
@@ -230,10 +223,7 @@ mod tests {
 
     #[test]
     fn test7() {
-        let b3 = vec![
-            vec!['a', 'a'],
-            vec!['a', 'a']
-        ];
+        let b3 = vec![vec!['a', 'a'], vec!['a', 'a']];
         assert!(!exist(b3.clone(), "aaaaa".to_string()));
     }
 
@@ -246,7 +236,6 @@ mod tests {
             vec!['b', 'a', 'b', 'b', 'a', 'b'],
             vec!['a', 'b', 'b', 'a', 'b', 'a'],
             vec!['b', 'a', 'a', 'a', 'a', 'b'],
-
         ];
         assert!(!exist(b3.clone(), "bbbaabbbbab".to_string()));
     }

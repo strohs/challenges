@@ -9,7 +9,6 @@
 struct Solution;
 
 impl Solution {
-
     pub fn search_matrix(matrix: Vec<Vec<i32>>, target: i32) -> bool {
         // 1. binary search the first elements of each row to find the row target could be in
         // 2. binary search the target row for target
@@ -17,7 +16,7 @@ impl Solution {
         return match matrix.binary_search_by_key(&target, |row| row[0]) {
             Ok(_) => true,
             Err(i) if i == 0 => matrix[i].binary_search(&target).map_or(false, |_| true),
-            Err(i) => matrix[i-1].binary_search(&target).map_or(false, |_| true),
+            Err(i) => matrix[i - 1].binary_search(&target).map_or(false, |_| true),
         };
     }
 }
@@ -78,17 +77,13 @@ mod tests {
 
     #[test]
     fn target_in_1x1() {
-        let matrix: Vec<Vec<i32>> = vec![
-            vec![7],
-        ];
+        let matrix: Vec<Vec<i32>> = vec![vec![7]];
         assert_eq!(Solution::search_matrix(matrix, 7), true);
     }
 
     #[test]
     fn target_not_in_1x1() {
-        let matrix: Vec<Vec<i32>> = vec![
-            vec![7],
-        ];
+        let matrix: Vec<Vec<i32>> = vec![vec![7]];
         assert_eq!(Solution::search_matrix(matrix, 9), false);
     }
 }

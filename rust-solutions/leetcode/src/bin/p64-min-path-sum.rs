@@ -14,7 +14,6 @@
 //      take the minimum of those two values as the value of the current cell
 // repeat until you reach the cell at index row_len - 1, col_len - 1; where it will have the minimum sum
 
-
 pub fn min_path_sum(grid: Vec<Vec<i32>>) -> i32 {
     let row_len = grid.len();
     let col_len = grid[0].len();
@@ -37,15 +36,14 @@ pub fn min_path_sum(grid: Vec<Vec<i32>>) -> i32 {
     }
     for r in 1..row_len {
         for c in 1..col_len {
-            let left = grid[r][c] + sums[r][c-1];
-            let top = grid[r][c] + sums[r-1][c];
+            let left = grid[r][c] + sums[r][c - 1];
+            let top = grid[r][c] + sums[r - 1][c];
             sums[r][c] = std::cmp::min(left, top);
         }
     }
 
-    sums[row_len-1][col_len-1]
+    sums[row_len - 1][col_len - 1]
 }
-
 
 fn main() {}
 
@@ -55,19 +53,13 @@ mod tests {
 
     #[test]
     fn example1() {
-        let grid = vec![
-            vec![1, 3, 1],
-            vec![1, 5, 1],
-            vec![4, 2, 1],
-        ];
+        let grid = vec![vec![1, 3, 1], vec![1, 5, 1], vec![4, 2, 1]];
         assert_eq!(min_path_sum(grid), 7);
     }
 
     #[test]
     fn one_by_one_grid() {
-        let grid = vec![
-            vec![3],
-        ];
+        let grid = vec![vec![3]];
         assert_eq!(min_path_sum(grid), 3);
     }
 }

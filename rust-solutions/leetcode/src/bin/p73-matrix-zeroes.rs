@@ -3,7 +3,6 @@
 ///
 /// You must do it in place.
 pub fn set_zeroes(matrix: &mut Vec<Vec<i32>>) {
-
     // check if the 0th row and 0th column have any natural zeroes in them
     // if so, they will need to be set to all zeroes at the end of the algorithm
     let zero_row = matrix[0].iter().any(|v| *v == 0);
@@ -18,7 +17,6 @@ pub fn set_zeroes(matrix: &mut Vec<Vec<i32>>) {
             }
         }
     }
-
 
     // now iterate the top row, any zeroes indicate a column that needs to be filled
     for ci in 1..matrix[0].len() {
@@ -48,7 +46,6 @@ pub fn set_zeroes(matrix: &mut Vec<Vec<i32>>) {
             matrix[i][0] = 0;
         }
     }
-
 }
 
 fn main() {}
@@ -59,32 +56,16 @@ mod tests {
 
     #[test]
     fn example1() {
-        let mut matrix = vec![
-            vec![1, 1, 1],
-            vec![1, 0, 1],
-            vec![1, 1, 1],
-        ];
-        let res_matrix = vec![
-            vec![1, 0, 1],
-            vec![0, 0, 0],
-            vec![1, 0, 1],
-        ];
+        let mut matrix = vec![vec![1, 1, 1], vec![1, 0, 1], vec![1, 1, 1]];
+        let res_matrix = vec![vec![1, 0, 1], vec![0, 0, 0], vec![1, 0, 1]];
         set_zeroes(&mut matrix);
         assert_eq!(matrix, res_matrix);
     }
 
     #[test]
     fn example2() {
-        let mut matrix = vec![
-            vec![0,1,2,0],
-            vec![3,4,5,2],
-            vec![1,3,1,5],
-        ];
-        let res = vec![
-            vec![0,0,0,0],
-            vec![0,4,5,0],
-            vec![0,3,1,0],
-        ];
+        let mut matrix = vec![vec![0, 1, 2, 0], vec![3, 4, 5, 2], vec![1, 3, 1, 5]];
+        let res = vec![vec![0, 0, 0, 0], vec![0, 4, 5, 0], vec![0, 3, 1, 0]];
         set_zeroes(&mut matrix);
         assert_eq!(matrix, res);
     }
@@ -92,16 +73,16 @@ mod tests {
     #[test]
     fn example3() {
         let mut matrix = vec![
-            vec![ 1, 2, 3, 4],
-            vec![ 5, 0, 7, 8],
-            vec![ 0,10,11,12],
-            vec![13,14,15, 0],
+            vec![1, 2, 3, 4],
+            vec![5, 0, 7, 8],
+            vec![0, 10, 11, 12],
+            vec![13, 14, 15, 0],
         ];
         let res = vec![
-            vec![0,0,3,0],
-            vec![0,0,0,0],
-            vec![0,0,0,0],
-            vec![0,0,0,0],
+            vec![0, 0, 3, 0],
+            vec![0, 0, 0, 0],
+            vec![0, 0, 0, 0],
+            vec![0, 0, 0, 0],
         ];
         set_zeroes(&mut matrix);
         assert_eq!(matrix, res);
@@ -109,12 +90,8 @@ mod tests {
 
     #[test]
     fn example1x1() {
-        let mut matrix = vec![
-            vec![1],
-        ];
-        let res = vec![
-            vec![1],
-        ];
+        let mut matrix = vec![vec![1]];
+        let res = vec![vec![1]];
         set_zeroes(&mut matrix);
         assert_eq!(matrix, res);
     }

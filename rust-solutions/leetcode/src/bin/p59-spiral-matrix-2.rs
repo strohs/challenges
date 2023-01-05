@@ -5,14 +5,12 @@
 /// `1 <= n <= 20`
 ///
 pub fn generate_matrix(n: i32) -> Vec<Vec<i32>> {
-
     let mut matrix: Vec<Vec<i32>> = vec![vec![0_i32; n as usize]; n as usize];
     let dim = n as usize; // dimension of the square matrix
     let (mut rb, mut re, mut cb, mut ce) = (0_usize, dim, 0_usize, dim);
     let mut cur = 1;
 
-    for &i in [1,2,3,4].iter().cycle() {
-
+    for &i in [1, 2, 3, 4].iter().cycle() {
         // iterate columns
         if i % 4 == 1 {
             for c in cb..ce {
@@ -47,9 +45,8 @@ pub fn generate_matrix(n: i32) -> Vec<Vec<i32>> {
         }
 
         if rb >= re || cb >= ce {
-            break
+            break;
         }
-
     }
 
     matrix
@@ -63,7 +60,7 @@ mod tests {
 
     #[test]
     fn example1() {
-        let matrix = vec![vec![1,2,3], vec![8,9,4], vec![7,6,5]];
+        let matrix = vec![vec![1, 2, 3], vec![8, 9, 4], vec![7, 6, 5]];
         let res = generate_matrix(3);
         assert_eq!(res, matrix);
     }
@@ -77,7 +74,7 @@ mod tests {
 
     #[test]
     fn example3() {
-        let matrix = vec![vec![1,2], vec![4,3]];
+        let matrix = vec![vec![1, 2], vec![4, 3]];
         let res = generate_matrix(2);
         assert_eq!(res, matrix);
     }

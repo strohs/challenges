@@ -74,93 +74,126 @@ mod tests {
 
     #[test]
     fn example1() {
-        let intervals = vec![vec![1,3], vec![6,9]];
+        let intervals = vec![vec![1, 3], vec![6, 9]];
         let new_int = vec![2, 5];
-        assert_eq!(insert(intervals, new_int), vec![vec![1,5], vec![6,9]]);
+        assert_eq!(insert(intervals, new_int), vec![vec![1, 5], vec![6, 9]]);
     }
 
     #[test]
     fn example2() {
-        let intervals = vec![vec![1,2], vec![3,5], vec![6,7], vec![8, 10], vec![12,16]];
-        let new_int = vec![4,8];
-        assert_eq!(insert(intervals, new_int), vec![vec![1,2], vec![3, 10], vec![12, 16]]);
+        let intervals = vec![
+            vec![1, 2],
+            vec![3, 5],
+            vec![6, 7],
+            vec![8, 10],
+            vec![12, 16],
+        ];
+        let new_int = vec![4, 8];
+        assert_eq!(
+            insert(intervals, new_int),
+            vec![vec![1, 2], vec![3, 10], vec![12, 16]]
+        );
     }
 
     #[test]
     fn example3() {
-        let intervals = vec![vec![1,2], vec![3,5], vec![6,7], vec![8, 10], vec![12,16]];
+        let intervals = vec![
+            vec![1, 2],
+            vec![3, 5],
+            vec![6, 7],
+            vec![8, 10],
+            vec![12, 16],
+        ];
         // within last interval
-        let new_int = vec![13,14];
-        assert_eq!(insert(intervals, new_int), vec![vec![1,2], vec![3,5], vec![6,7], vec![8, 10], vec![12,16]]);
+        let new_int = vec![13, 14];
+        assert_eq!(
+            insert(intervals, new_int),
+            vec![
+                vec![1, 2],
+                vec![3, 5],
+                vec![6, 7],
+                vec![8, 10],
+                vec![12, 16]
+            ]
+        );
     }
 
     #[test]
     fn example4() {
-        let intervals = vec![vec![1,3], vec![6,9]];
+        let intervals = vec![vec![1, 3], vec![6, 9]];
         let new_int = vec![12, 16];
-        assert_eq!(insert(intervals, new_int), vec![vec![1,3], vec![6,9], vec![12, 16]]);
+        assert_eq!(
+            insert(intervals, new_int),
+            vec![vec![1, 3], vec![6, 9], vec![12, 16]]
+        );
     }
 
     #[test]
     fn example5() {
-        let intervals = vec![vec![1,3], vec![6,9]];
+        let intervals = vec![vec![1, 3], vec![6, 9]];
         let new_int = vec![4, 5];
-        assert_eq!(insert(intervals, new_int), vec![vec![1,3], vec![4,5], vec![6,9]]);
+        assert_eq!(
+            insert(intervals, new_int),
+            vec![vec![1, 3], vec![4, 5], vec![6, 9]]
+        );
     }
 
     #[test]
     fn example6() {
-        let intervals = vec![vec![5,9], vec![13,15]];
-        let new_int = vec![1,3];
-        assert_eq!(insert(intervals, new_int), vec![vec![1,3], vec![5,9], vec![13, 15]]);
+        let intervals = vec![vec![5, 9], vec![13, 15]];
+        let new_int = vec![1, 3];
+        assert_eq!(
+            insert(intervals, new_int),
+            vec![vec![1, 3], vec![5, 9], vec![13, 15]]
+        );
     }
 
     #[test]
     fn example7_empty_input() {
         let intervals = vec![];
-        let new_int = vec![1,3];
-        assert_eq!(insert(intervals, new_int), vec![vec![1,3]]);
+        let new_int = vec![1, 3];
+        assert_eq!(insert(intervals, new_int), vec![vec![1, 3]]);
     }
 
     #[test]
     fn example8() {
-        let intervals = vec![vec![1,5]];
-        let new_int = vec![0,3];
-        assert_eq!(insert(intervals, new_int), vec![vec![0,5]]);
+        let intervals = vec![vec![1, 5]];
+        let new_int = vec![0, 3];
+        assert_eq!(insert(intervals, new_int), vec![vec![0, 5]]);
     }
 
     #[test]
     fn example9() {
-        let intervals = vec![vec![1,5]];
-        let new_int = vec![0,6];
-        assert_eq!(insert(intervals, new_int), vec![vec![0,6]]);
+        let intervals = vec![vec![1, 5]];
+        let new_int = vec![0, 6];
+        assert_eq!(insert(intervals, new_int), vec![vec![0, 6]]);
     }
 
     #[test]
     fn example10() {
-        let intervals = vec![vec![1,5], vec![6,8]];
-        let new_int = vec![3,7];
-        assert_eq!(insert(intervals, new_int), vec![vec![1,8]]);
+        let intervals = vec![vec![1, 5], vec![6, 8]];
+        let new_int = vec![3, 7];
+        assert_eq!(insert(intervals, new_int), vec![vec![1, 8]]);
     }
 
     #[test]
     fn example11() {
-        let intervals = vec![vec![1,5], vec![6,8]];
-        let new_int = vec![0,9];
-        assert_eq!(insert(intervals, new_int), vec![vec![0,9]]);
+        let intervals = vec![vec![1, 5], vec![6, 8]];
+        let new_int = vec![0, 9];
+        assert_eq!(insert(intervals, new_int), vec![vec![0, 9]]);
     }
 
     #[test]
     fn example12() {
-        let intervals = vec![vec![1,5], vec![9,12]];
-        let new_int = vec![0,4];
-        assert_eq!(insert(intervals, new_int), vec![vec![0,5], vec![9,12]]);
+        let intervals = vec![vec![1, 5], vec![9, 12]];
+        let new_int = vec![0, 4];
+        assert_eq!(insert(intervals, new_int), vec![vec![0, 5], vec![9, 12]]);
     }
 
     #[test]
     fn example13() {
-        let intervals = vec![vec![0,0], vec![2,4], vec![9,9]];
-        let new_int = vec![0,7];
-        assert_eq!(insert(intervals, new_int), vec![vec![0,7], vec![9,9]]);
+        let intervals = vec![vec![0, 0], vec![2, 4], vec![9, 9]];
+        let new_int = vec![0, 7];
+        assert_eq!(insert(intervals, new_int), vec![vec![0, 7], vec![9, 9]]);
     }
 }

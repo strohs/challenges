@@ -51,11 +51,11 @@ fn median(nums1: &[i32], nums2: &[i32]) -> Vec<i32> {
                     Ordering::Less => {
                         i1 += 1;
                         ev += 1;
-                    },
+                    }
                     Ordering::Greater => {
                         i2 += 1;
                         ev += 1;
-                    },
+                    }
                     _ => {
                         i1 += 1;
                         //i2 += 1;

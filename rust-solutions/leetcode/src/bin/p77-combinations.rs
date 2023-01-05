@@ -5,11 +5,9 @@
 /// Note that combinations are unordered, i.e., `[1,2]` and `[2,1]` are considered to be
 /// the same combination.
 
-
 struct Solution;
 
 impl Solution {
-
     pub fn combine(n: i32, k: i32) -> Vec<Vec<i32>> {
         let mut tmp: Vec<i32> = Vec::new();
         let mut ans: Vec<Vec<i32>> = Vec::new();
@@ -24,7 +22,7 @@ impl Solution {
             for i in left..=n {
                 tmp.push(i);
                 println!("{:?}", &tmp);
-                Solution::combine_rec(i+1, n, k-1, tmp, ans);
+                Solution::combine_rec(i + 1, n, k - 1, tmp, ans);
                 tmp.pop();
             }
         }
@@ -40,23 +38,33 @@ mod tests {
     #[test]
     fn example1() {
         let ans = Solution::combine(4, 2);
-        assert_eq!(ans, vec![vec![1,2], vec![1,3], vec![1,4], vec![2, 3], vec![2, 4], vec![3,4]]);
+        assert_eq!(
+            ans,
+            vec![
+                vec![1, 2],
+                vec![1, 3],
+                vec![1, 4],
+                vec![2, 3],
+                vec![2, 4],
+                vec![3, 4]
+            ]
+        );
     }
 
     #[test]
     fn example2() {
-        let ans = Solution::combine(1,1);
+        let ans = Solution::combine(1, 1);
         assert_eq!(ans, vec![vec![1]]);
     }
 
     #[test]
     fn example3() {
-        let ans = Solution::combine(2,1);
+        let ans = Solution::combine(2, 1);
         assert_eq!(ans, vec![vec![1], vec![2]]);
     }
 
     #[test]
     fn example4() {
-        let ans = Solution::combine(4,3);
+        let ans = Solution::combine(4, 3);
     }
 }

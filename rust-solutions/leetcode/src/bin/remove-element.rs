@@ -38,7 +38,10 @@ pub fn remove_element(nums: &mut Vec<i32>, val: i32) -> i32 {
 /// returns `Some(index)` of the first element, in `nums`, that is != to val
 /// If no such element is found, None is returned
 fn index_of_first_ne(nums: &[i32], val: i32) -> Option<usize> {
-    nums.iter().enumerate().find(|&(_i, e)| *e != val).map(|(i, _e)| i)
+    nums.iter()
+        .enumerate()
+        .find(|&(_i, e)| *e != val)
+        .map(|(i, _e)| i)
 }
 
 fn main() {

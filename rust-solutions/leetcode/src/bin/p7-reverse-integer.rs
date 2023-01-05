@@ -59,11 +59,9 @@ fn reverse(n: i32) -> i32 {
     while m > 0 {
         // we want to safely perform the following computation:   res += mult * (m % 10)
         // if an overflow occurs we immedialtely return 0
-        match mult
-            .checked_mul(m % 10)
-            .and_then(|r| res.checked_add(r)) {
-                Some(adder) => res = adder,
-                None => return 0,
+        match mult.checked_mul(m % 10).and_then(|r| res.checked_add(r)) {
+            Some(adder) => res = adder,
+            None => return 0,
         }
         m /= 10;
         mult /= 10;

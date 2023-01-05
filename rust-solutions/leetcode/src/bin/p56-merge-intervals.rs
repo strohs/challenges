@@ -10,7 +10,7 @@ pub fn merge(intervals: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
     let mut res = vec![];
     let mut i = 0_usize;
     while i < intervals.len() {
-        let j = i+1;
+        let j = i + 1;
         if j < intervals.len() {
             if intervals[i][1] >= intervals[j][0] {
                 intervals[j][0] = intervals[i][0];
@@ -37,43 +37,43 @@ mod tests {
 
     #[test]
     fn example1() {
-        let ints = vec![vec![1,3], vec![2,6], vec![8,10], vec![15,18]];
+        let ints = vec![vec![1, 3], vec![2, 6], vec![8, 10], vec![15, 18]];
         let merged = merge(ints);
-        assert_eq!(merged, vec![vec![1,6], vec![8,10], vec![15,18]]);
+        assert_eq!(merged, vec![vec![1, 6], vec![8, 10], vec![15, 18]]);
     }
 
     #[test]
     fn example2() {
-        let ints = vec![vec![1,3], vec![2,6]];
+        let ints = vec![vec![1, 3], vec![2, 6]];
         let merged = merge(ints);
-        assert_eq!(merged, vec![vec![1,6]]);
+        assert_eq!(merged, vec![vec![1, 6]]);
     }
 
     #[test]
     fn example3() {
-        let ints = vec![vec![1,3]];
+        let ints = vec![vec![1, 3]];
         let merged = merge(ints);
-        assert_eq!(merged, vec![vec![1,3]]);
+        assert_eq!(merged, vec![vec![1, 3]]);
     }
 
     #[test]
     fn example4() {
-        let ints = vec![vec![1,3], vec![2,6], vec![8,10]];
+        let ints = vec![vec![1, 3], vec![2, 6], vec![8, 10]];
         let merged = merge(ints);
-        assert_eq!(merged, vec![vec![1,6], vec![8,10]]);
+        assert_eq!(merged, vec![vec![1, 6], vec![8, 10]]);
     }
 
     #[test]
     fn example5() {
-        let ints = vec![vec![1,4], vec![0,4]];
+        let ints = vec![vec![1, 4], vec![0, 4]];
         let merged = merge(ints);
-        assert_eq!(merged, vec![vec![0,4]]);
+        assert_eq!(merged, vec![vec![0, 4]]);
     }
 
     #[test]
     fn example6() {
-        let ints = vec![vec![1,4], vec![2,3]];
+        let ints = vec![vec![1, 4], vec![2, 3]];
         let merged = merge(ints);
-        assert_eq!(merged, vec![vec![1,4]]);
+        assert_eq!(merged, vec![vec![1, 4]]);
     }
 }

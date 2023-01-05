@@ -22,7 +22,7 @@ pub fn unique_paths_with_obstacles(obstacle_grid: Vec<Vec<i32>>) -> i32 {
             if c == 0 {
                 1
             } else {
-                paths[0][c-1]
+                paths[0][c - 1]
             }
         };
     }
@@ -33,16 +33,16 @@ pub fn unique_paths_with_obstacles(obstacle_grid: Vec<Vec<i32>>) -> i32 {
             if r == 0 {
                 1
             } else {
-                paths[r-1][0]
+                paths[r - 1][0]
             }
         };
     }
     for r in 1..row_len {
         for c in 1..col_len {
-            if is_obstacle(r,c) {
+            if is_obstacle(r, c) {
                 paths[r][c] = 0;
             } else {
-                paths[r][c] = paths[r-1][c] + paths[r][c-1];
+                paths[r][c] = paths[r - 1][c] + paths[r][c - 1];
             }
         }
     }
@@ -51,12 +51,7 @@ pub fn unique_paths_with_obstacles(obstacle_grid: Vec<Vec<i32>>) -> i32 {
 }
 
 fn main() {
-
-    let grid = vec![
-        vec![0_i32, 0, 0, 0],
-        vec![0,     1, 0, 0],
-        vec![0,     0, 0, 0],
-    ];
+    let grid = vec![vec![0_i32, 0, 0, 0], vec![0, 1, 0, 0], vec![0, 0, 0, 0]];
 
     let count = unique_paths_with_obstacles(grid);
     println!("{count}");
@@ -68,35 +63,25 @@ mod tests {
 
     #[test]
     fn example1() {
-        let grid = vec![
-            vec![0_i32, 0, 0, 0],
-            vec![0,     1, 0, 0],
-            vec![0,     0, 0, 0],
-        ];
+        let grid = vec![vec![0_i32, 0, 0, 0], vec![0, 1, 0, 0], vec![0, 0, 0, 0]];
         assert_eq!(unique_paths_with_obstacles(grid), 4);
     }
 
     #[test]
     fn example_1x1_grid() {
-        let grid = vec![
-            vec![0_i32]
-        ];
+        let grid = vec![vec![0_i32]];
         assert_eq!(unique_paths_with_obstacles(grid), 1);
     }
 
     #[test]
     fn example_1x1_obstacle() {
-        let grid = vec![
-            vec![1_i32]
-        ];
+        let grid = vec![vec![1_i32]];
         assert_eq!(unique_paths_with_obstacles(grid), 0);
     }
 
     #[test]
     fn example_1x2() {
-        let grid = vec![
-            vec![1_i32, 0]
-        ];
+        let grid = vec![vec![1_i32, 0]];
         assert_eq!(unique_paths_with_obstacles(grid), 0);
     }
 }

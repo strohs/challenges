@@ -8,28 +8,24 @@
 // Definition for singly-linked list.
 #[derive(PartialEq, Eq, Clone, Debug)]
 pub struct ListNode {
-  pub val: i32,
-  pub next: Option<Box<ListNode>>
+    pub val: i32,
+    pub next: Option<Box<ListNode>>,
 }
 
 impl ListNode {
-  #[inline]
-  fn new(val: i32) -> Self {
-    ListNode {
-      next: None,
-      val
+    #[inline]
+    fn new(val: i32) -> Self {
+        ListNode { next: None, val }
     }
-  }
 }
 
 pub fn rotate_right(head: Option<Box<ListNode>>, k: i32) -> Option<Box<ListNode>> {
-
     fn len(mut head: &Option<Box<ListNode>>) -> usize {
         let mut len = 0;
         while let Some(node) = head {
             len += 1;
             head = &node.next;
-        };
+        }
         len
     }
 
@@ -50,7 +46,7 @@ pub fn rotate_right(head: Option<Box<ListNode>>, k: i32) -> Option<Box<ListNode>
 
     // walk cur to the node previous to the nh_idx node
     let mut cur = &mut head;
-    for _ in 0..nh_idx-1 {
+    for _ in 0..nh_idx - 1 {
         cur = cur.next.as_mut().unwrap();
     }
 
@@ -75,7 +71,7 @@ fn append(ls: &[i32]) -> Option<Box<ListNode>> {
         } else {
             let node = Box::new(ListNode {
                 val: *i,
-                next: head.take()
+                next: head.take(),
             });
             head = Some(node);
         }
@@ -100,16 +96,15 @@ mod test {
 
     #[test]
     fn ex1() {
-        let head = append(&[1,2,3,4,5]);
+        let head = append(&[1, 2, 3, 4, 5]);
         let rotated = rotate_right(head, 2);
         print(&rotated);
     }
 
     #[test]
     fn ex2() {
-        let head = append(&[1,2]);
+        let head = append(&[1, 2]);
         let rotated = rotate_right(head, 0);
         print(&rotated);
     }
-
 }

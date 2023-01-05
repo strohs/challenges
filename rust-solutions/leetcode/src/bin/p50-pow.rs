@@ -12,9 +12,7 @@
 
 fn main() {}
 
-
 pub fn my_pow(x: f64, n: i32) -> f64 {
-
     let pos_n = if n >= 0 { true } else { false };
     let mut x = x;
     let mut n = if pos_n {
@@ -57,28 +55,27 @@ mod tests {
 
     #[test]
     fn example2() {
-        assert_eq!(format!("{:.4}",my_pow(2.1, 3)), "9.2610")
+        assert_eq!(format!("{:.4}", my_pow(2.1, 3)), "9.2610")
     }
 
     #[test]
     fn example3() {
-        assert_eq!(format!("{:.4}",my_pow(2.0, -2)), "0.2500")
+        assert_eq!(format!("{:.4}", my_pow(2.0, -2)), "0.2500")
     }
-
 
     #[test]
     fn leet_test1() {
         dbg!(2.0f64.powi(-23));
-        assert_eq!(format!("{:.4}",my_pow(2.0, -2147483648)), "0.0000")
+        assert_eq!(format!("{:.4}", my_pow(2.0, -2147483648)), "0.0000")
     }
 
     #[test]
     fn leet_test2() {
-        assert_eq!(format!("{:.4}",my_pow(-1.0, -2147483648)), "1.0000")
+        assert_eq!(format!("{:.4}", my_pow(-1.0, -2147483648)), "1.0000")
     }
 
     #[test]
     fn leet_test3() {
-        assert_eq!(format!("{:.4}",my_pow(1.0, -2147483648)), "1.0000")
+        assert_eq!(format!("{:.4}", my_pow(1.0, -2147483648)), "1.0000")
     }
 }
