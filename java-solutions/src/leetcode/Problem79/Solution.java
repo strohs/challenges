@@ -166,40 +166,40 @@ public class Solution {
 
     public static void main(String[] args) {
         Solution ws = new Solution();
-//        char [][] b1 = {
-//                {'A','B','C','E'},
-//                {'S','F','C','S'},
-//                {'A','D','E','E'}
-//        };
-//
-//        System.out.println(ws.exist(b1, "SEE"));   // true
-//        System.out.println(ws.exist(b1, "ABCCED"));// true
-//        System.out.println(ws.exist(b1, "ABCB"));  // false
-//
-//
-//        char[][] b2 = {
-//            {'A','B','C','E'},
-//            {'S','F','E','S'},
-//            {'A','D','E','E'}
-//        };
-//        System.out.println(ws.exist(b2, "ABCESEEEFS"));   // true
-//
-//        char[][] b3 = {
-//                {'a','a','b','a','a','b'},
-//                {'a','a','b','b','b','a'},
-//                {'a','a','a','a','b','a'},
-//                {'b','a','b','b','a','b'},
-//                {'a','b','b','a','b','a'},
-//                {'b','a','a','a','a','b'}
-//        };
-//        System.out.println(ws.exist(b3, "bbbaabbbbbab"));   // false
-//
-//        char[][] b4 = {
-//                {'A','B','C','E'},
-//                {'S','F','E','S'},
-//                {'A','D','E','E'}
-//        };
-//        System.out.println(ws.exist(b4, "SEES"));   // false
+        char [][] b1 = {
+                {'A','B','C','E'},
+                {'S','F','C','S'},
+                {'A','D','E','E'}
+        };
+
+        System.out.println(ws.exist(b1, "SEE"));   // true
+        System.out.println(ws.exist(b1, "ABCCED"));// true
+        System.out.println(ws.exist(b1, "ABCB"));  // false
+
+
+        char[][] b2 = {
+            {'A','B','C','E'},
+            {'S','F','E','S'},
+            {'A','D','E','E'}
+        };
+        System.out.println(ws.exist(b2, "ABCESEEEFS"));   // true
+
+        char[][] b3 = {
+                {'a','a','b','a','a','b'},
+                {'a','a','b','b','b','a'},
+                {'a','a','a','a','b','a'},
+                {'b','a','b','b','a','b'},
+                {'a','b','b','a','b','a'},
+                {'b','a','a','a','a','b'}
+        };
+        System.out.println(ws.exist(b3, "bbbaabbbbbab"));   // false
+
+        char[][] b4 = {
+                {'A','B','C','E'},
+                {'S','F','E','S'},
+                {'A','D','E','E'}
+        };
+        System.out.println(ws.exist(b4, "SEES"));   // false
 
         char[][] b5 = {
                 {'A','A','A','A','A','A'},
