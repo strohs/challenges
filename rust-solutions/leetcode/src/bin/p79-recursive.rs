@@ -53,19 +53,17 @@ impl<T> Matrix<T> {
     }
 
     fn get_east(&self, row: usize, col: usize) -> Option<(usize, usize)> {
-        if self.0.get(row).and_then(|row| row.get(col + 1)).is_some() {
-            Some((row, col + 1))
-        } else {
-            None
-        }
+        self.0
+            .get(row)
+            .and_then(|row| row.get(col + 1))
+            .map(|_ch| (row, col + 1))
     }
 
     fn get_south(&self, row: usize, col: usize) -> Option<(usize, usize)> {
-        if self.0.get(row + 1).and_then(|row| row.get(col)).is_some() {
-            Some((row + 1, col))
-        } else {
-            None
-        }
+        self.0
+            .get(row + 1)
+            .and_then(|row| row.get(col))
+            .map(|_ch| (row + 1, col))
     }
 
     fn get_west(&self, row: usize, col: usize) -> Option<(usize, usize)> {
