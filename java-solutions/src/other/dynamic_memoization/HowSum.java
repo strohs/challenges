@@ -1,4 +1,4 @@
-package other;
+package other.dynamic_memoization;
 
 import java.util.Arrays;
 import java.util.HashMap;
