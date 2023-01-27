@@ -6,7 +6,7 @@ import java.util.Arrays;
  * Problem 322 - Coin change
  * <a href="https://leetcode.com/problems/coin-change/">Coin Change</a>
  */
-public class Solution {
+public class CoinChange {
 
     public int coinChange(int[] coins, int amount) {
         // use dynamic programming to compute the fewest number of coins needed to sum to the amount
