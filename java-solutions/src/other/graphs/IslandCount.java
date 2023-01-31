@@ -12,7 +12,7 @@ public class IslandCount {
     // a "wrapper" for a 2D row, col index in the island
     private record Index(int r, int c) {}
 
-    private static char[][] islandGrid1 = {
+    private static final char[][] islandGrid1 = {
             {'W', 'L', 'W', 'W', 'L', 'W'},
             {'L', 'L', 'W', 'W', 'L', 'W'},
             {'W', 'L', 'W', 'W', 'W', 'W'},
