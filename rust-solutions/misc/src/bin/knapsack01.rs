@@ -71,8 +71,7 @@ fn main() {
     println!("totals: weight={} value={}", totals.1, totals.2);
 
 
-    let weights = [23_u32, 26, 2
-    0, 18, 32, 27, 29, 26, 30, 27];
+    let weights = [23_u32, 26, 20, 18, 32, 27, 29, 26, 30, 27];
     let values = [505_u32, 352, 458, 220, 354, 414, 498, 545, 473, 543];
     let items = solve(&weights, &values, 67);
     for item in &items {

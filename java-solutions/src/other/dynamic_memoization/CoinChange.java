@@ -1,6 +1,9 @@
 package other.dynamic_memoization;
 
 
+import java.time.Duration;
+import java.time.Instant;
+
 /**
  * count the number of ways that the coins in the coin array can be combined to form the
  * target amount
@@ -62,5 +65,10 @@ public class CoinChange {
         System.out.println(sol.dp_table(5, new int[] {1, 2, 5})); // 4
 
         System.out.println(sol.dp_table(32, new int[] {2, 4, 8})); // 25
+
+        Instant start = Instant.now();
+        System.out.println(sol.brute_force(1000, new int[] {1 ,2, 4, 6, 8}));
+        Instant end = Instant.now();
+        System.out.println(Duration.between(start, end).toMillis());
     }
 }
