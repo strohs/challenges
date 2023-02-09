@@ -14,7 +14,7 @@ public class Solution {
 
     static class ListNode {
         int val;
-        leetcode.Problem86.Solution.ListNode next;
+        ListNode next;
 
         ListNode() {
         }
@@ -23,7 +23,7 @@ public class Solution {
             this.val = val;
         }
 
-        ListNode(int val, leetcode.Problem86.Solution.ListNode next) {
+        ListNode(int val, ListNode next) {
             this.val = val;
             this.next = next;
         }
