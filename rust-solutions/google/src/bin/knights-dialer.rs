@@ -20,26 +20,25 @@
 // 6,7,2
 // 6,7,6
 
-use lazy_static::lazy_static;
+use once_cell::sync::Lazy;
 use std::collections::HashMap;
 
-lazy_static! {
-    static ref KEY_MAP: HashMap<u8, Vec<u8>> = {
-        let mut hm = HashMap::with_capacity(10);
-        hm.insert(1, vec![6, 8]);
-        hm.insert(2, vec![7 ,9]);
-        hm.insert(3, vec![4 ,8]);
-        hm.insert(4, vec![0, 3, 9]);
-        hm.insert(5, vec![]);
-        hm.insert(6, vec![0, 1, 7]);
-        hm.insert(7, vec![2, 6]);
-        hm.insert(8, vec![1, 3]);
-        hm.insert(9, vec![2 ,4]);
-        hm.insert(0, vec![4 ,6]);
+static KEY_MAP: Lazy<HashMap<u8, Vec<u8>>> = Lazy::new(|| {
+    let mut hm = HashMap::with_capacity(10);
+    hm.insert(1, vec![6, 8]);
+    hm.insert(2, vec![7 ,9]);
+    hm.insert(3, vec![4 ,8]);
+    hm.insert(4, vec![0, 3, 9]);
+    hm.insert(5, vec![]);
+    hm.insert(6, vec![0, 1, 7]);
+    hm.insert(7, vec![2, 6]);
+    hm.insert(8, vec![1, 3]);
+    hm.insert(9, vec![2 ,4]);
+    hm.insert(0, vec![4 ,6]);
 
-        hm
-    };
-}
+    hm
+});
+
 
 fn neighbors(key: u8) -> &'static Vec<u8> {
     KEY_MAP.get(&key).expect("key must be in the range 0 - 9")
