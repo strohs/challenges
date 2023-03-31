@@ -47,11 +47,11 @@ fn merge_sort<T>(arr: &[T]) -> Vec<T>
 }
 
 fn main() {
-    let mut arr = [9,7,5,2,0,8,6,4,3,1];
+    let mut arr = [9,7,5,2,0,8,6,4,3,1,9,7,5,2,0,8,6,4,3,1];
 
-    let (a1, a2) = arr.split_at_mut(5);
-    dbg!(&a1);
-    dbg!(&a2);
+    // let (a1, a2) = arr.split_at_mut(5);
+    // dbg!(&a1);
+    // dbg!(&a2);
 
-    //dbg!( merge_sort(&arr.to_vec()) );
+    dbg!( merge_sort(&arr.to_vec()));
 }

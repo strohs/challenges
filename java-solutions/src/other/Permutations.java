@@ -12,7 +12,7 @@ public class Permutations {
         }
 
         for (int i = 0; i < s.length(); i++) {
-            System.out.printf("  i:%d     s:%s   ans:%s\n", i, s, ans);
+            //System.out.printf("  i:%d     s:%s   ans:%s\n", i, s, ans);
             // ith char of s
             char c = s.charAt(i);
 
