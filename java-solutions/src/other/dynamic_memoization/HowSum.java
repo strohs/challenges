@@ -58,7 +58,7 @@ public class HowSum {
         return null;
     }
 
-    // returns a new array containing the concatenatation of array2 onto the end of array1.
+    // returns a new array containing the concatenation of array2 onto the end of array1.
     static int[] concatArrays(int[] array1, int[] array2) {
         return IntStream.concat(Arrays.stream(array1), Arrays.stream(array2)).toArray();
     }
