@@ -39,10 +39,6 @@ impl Solution {
         })
     }
 
-    fn swap_vals(n1: &mut Box<ListNode>, n2: &mut Box<ListNode>) {
-        std::mem::swap(n1, n2);
-    }
-
 
     fn print_list(head: &Option<Box<ListNode>>) {
         let mut cur = head;
@@ -50,7 +46,7 @@ impl Solution {
             print!("{} ", node.val);
             cur = &node.next;
         }
-        println!("");
+        println!();
     }
 }
 
