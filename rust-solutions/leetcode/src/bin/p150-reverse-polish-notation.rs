@@ -4,7 +4,6 @@
 struct Solution;
 
 impl Solution {
-
     pub fn eval_rpn(tokens: Vec<String>) -> i32 {
         let mut stack: Vec<i32> = vec![];
         let pop_two = |stack: &mut Vec<i32>| {
@@ -40,8 +39,6 @@ impl Solution {
 
         stack.pop().expect("stack will have one final result element")
     }
-
-
 }
 
 fn main() {}
