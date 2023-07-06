@@ -7,20 +7,20 @@ use std::thread;
 /// common example is counting the frequency of letters. Create a function that returns the
 /// total frequency of each letter in a list of texts and that employs parallelism.
 
-
 /// uses native threads to compute the frequencies of letters within the given `input`.
 /// NOTE: since `input` is passed to this function as a `&[&str]`, it will be impossible to share
 /// be between threads without using an external crate like crossbeam or rayon.
 /// Therefore, the string data will need to be copied before sending it to a thread.
 pub fn frequency(input: &[&str], worker_count: usize) -> HashMap<char, usize> {
-
     // create a vec to hold our join handles
     let mut handles = vec![];
 
     // freqs will hold the final results from all threads
     let mut freqs: HashMap<char, usize> = HashMap::new();
 
-    if input.is_empty() { return freqs; }
+    if input.is_empty() {
+        return freqs;
+    }
 
     // determine the size of each "chunk" a thread will receive from the `input` slice
     let chunk_size = (input.len() + (worker_count - 1)) / worker_count;
@@ -44,9 +44,7 @@ pub fn frequency(input: &[&str], worker_count: usize) -> HashMap<char, usize> {
 
     // now join all the threads and merge their resulting hashmaps into our "final" hashmap
     for handle in handles {
-        let res_map = handle
-            .join()
-            .expect("a thread may have panicked");
+        let res_map = handle.join().expect("a thread may have panicked");
         merge_maps_counts(res_map, &mut freqs);
     }
 
@@ -56,10 +54,10 @@ pub fn frequency(input: &[&str], worker_count: usize) -> HashMap<char, usize> {
 /// returns a HashMap that maps each **ALPHABETIC** character in `s` to the number of times it
 /// occurs in `s`. if the input string is empty, and empty hashMap is returned
 fn letter_freqs(s: &str) -> HashMap<char, usize> {
-    let mut map: HashMap<char,usize> = HashMap::new();
+    let mut map: HashMap<char, usize> = HashMap::new();
 
     for ch in s.chars() {
-        if ch.is_alphabetic(){
+        if ch.is_alphabetic() {
             // NOTE: non-ASCII chars will not be converted to lowercase
             let normalized_char = ch.to_ascii_lowercase();
             let ch_count = map.entry(normalized_char).or_insert(0);
@@ -82,16 +80,23 @@ fn merge_maps_counts(src: HashMap<char, usize>, tar: &mut HashMap<char, usize>) 
 
 #[cfg(test)]
 mod tests {
-    use std::collections::HashMap;
     use super::frequency;
+    use std::collections::HashMap;
 
     #[test]
     fn freqs_with_4_workers() {
         let worker_count = 4_usize;
-        let inputs = ["aaaa,1,2", "bbbb,3,4", "cccc,5,6", "dddd,7,8", "Freude schöner Götterfunken", "ffff", "gggg"];
+        let inputs = [
+            "aaaa,1,2",
+            "bbbb,3,4",
+            "cccc,5,6",
+            "dddd,7,8",
+            "Freude schöner Götterfunken",
+            "ffff",
+            "gggg",
+        ];
         let frequencies = frequency(&inputs, worker_count);
         assert_eq!(*frequencies.get(&'c').unwrap(), 5_usize);
-
     }
 
     #[test]

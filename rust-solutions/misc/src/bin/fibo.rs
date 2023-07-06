@@ -16,4 +16,5 @@ fn fibo(target: u128) -> u128 {
 fn main() {
     let target: u128 = 1_000_000;
     println!("target {} = {}", &target, fibo(target));
+
 }

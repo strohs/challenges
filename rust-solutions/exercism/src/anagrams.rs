@@ -2,7 +2,6 @@ use std::collections::HashSet;
 
 // Exercism's Anagrams challenge for rust
 
-
 pub fn anagrams_for<'a>(word: &str, possible_anagrams: &[&'a str]) -> HashSet<&'a str> {
     // sorts the characters of a &str, returning a new, sorted Vec<char>
     fn sort_chars(word: &str) -> Vec<char> {
@@ -44,7 +43,7 @@ mod tests {
 
     #[test]
     fn should_match_inlets_but_not_match_listen() {
-        let anagrams = ["enlists", "google", "inlets", "banana","listen"];
+        let anagrams = ["enlists", "google", "inlets", "banana", "listen"];
         let word = "listen";
         let af = anagrams_for(&word, &anagrams);
         assert_eq!(af.len(), 1);

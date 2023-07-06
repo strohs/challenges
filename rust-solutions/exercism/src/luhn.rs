@@ -1,4 +1,3 @@
-
 /// Check a Luhn checksum.
 pub fn is_valid(code: &str) -> bool {
     let code = code.replace(" ", "");
@@ -9,26 +8,21 @@ pub fn is_valid(code: &str) -> bool {
 
     // string must contain only digits
     if code.parse::<usize>().is_err() {
-        return false
+        return false;
     }
-    let sum = code.chars()
-        .rev()
-        .enumerate()
-        .fold(0, |acc, (i, ch)| {
-            if i % 2 != 0 {
-                let mut dbl = ch.to_digit(10).unwrap() * 2;
-                if dbl > 9 {
-                    dbl = dbl - 9;
-                }
-                acc + dbl
-            } else {
-                acc + ch.to_digit(10).unwrap()
+    let sum = code.chars().rev().enumerate().fold(0, |acc, (i, ch)| {
+        if i % 2 != 0 {
+            let mut dbl = ch.to_digit(10).unwrap() * 2;
+            if dbl > 9 {
+                dbl = dbl - 9;
             }
-        });
+            acc + dbl
+        } else {
+            acc + ch.to_digit(10).unwrap()
+        }
+    });
     sum % 10 == 0
 }
-
-
 
 #[cfg(test)]
 mod tests {
