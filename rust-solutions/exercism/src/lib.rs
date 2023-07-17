@@ -8,3 +8,5 @@ mod reverse_string;
 mod space_age;
 mod sublist;
 mod run_length_encoding;
+mod armstrong;
+mod acronyms;
