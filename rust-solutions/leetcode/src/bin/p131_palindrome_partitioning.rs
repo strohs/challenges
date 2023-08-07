@@ -5,11 +5,12 @@
 pub fn partition(s: String) -> Vec<Vec<String>> {
     let mut partitions = vec![];
 
-    'outer: for cutpoint in 0..(1 << s.len() - 1) {
+    // Each bit in cutpoints determines whether to cut between characters i and i+1
+    'outer: for cutpoints in 0..(1 << s.len() - 1) {
         let mut result = vec![];
         let mut lastcut = 0;
         for i in 0..s.len() {
-            if (1 << i) & cutpoint != 0 {
+            if (1 << i) & cutpoints != 0 {
                 if !is_palindrome(&s[lastcut..=i]) {
                     continue 'outer;
                 }
@@ -24,6 +25,10 @@ pub fn partition(s: String) -> Vec<Vec<String>> {
         partitions.push(result);
     }
     partitions
+}
+
+fn is_palindrome(s: &str) -> bool {
+    s.bytes().eq(s.bytes().rev())
 }
 
 // fn recurse(curr: &str, rest: &str, valids: Vec<Vec<String>>, memo: &mut HashMap<&str, Vec<Vec<String>>>) -> Option<Vec<Vec<String>>> {
@@ -58,9 +63,7 @@ pub fn partition(s: String) -> Vec<Vec<String>> {
 //     None
 // }
 
-fn is_palindrome(s: &str) -> bool {
-    s.bytes().eq(s.bytes().rev())
-}
+
 
 
 /// exponential runtime of Omega(2^n).. i.e. at least 2^n where n = s.len()
