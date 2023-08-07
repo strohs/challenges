@@ -6,7 +6,7 @@ import java.util.stream.IntStream;
 
 /**
  * DP practice problem
- * write a function: List<List<Integer>> howSum(int targetSum, int[] numbers) that returns any comination of numbers
+ * write a function: List<List<Integer>> howSum(int targetSum, int[] numbers) that returns any combination of numbers
  * that add up to the target sum. If there is no combination at all return null
  * Example:
  * howSum(7, [5, 3, 4, 7]) -> [3,4] Or [7]  (either would be correct answer)
